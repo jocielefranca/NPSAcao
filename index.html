@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardiões do NPS - Transformando Feedback em Excelência | Grupo Diagonal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d4d4d 0%, #1a5757 30%, #266b6b 70%, #338080 100%);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(51, 128, 128, 0.6);
+            border-radius: 50%;
+            animation: float 25s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 50px;
+            background: rgba(13, 77, 77, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid rgba(51, 128, 128, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-diagonal {
+            background: #0d4d4d;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            border: 1px solid rgba(51, 128, 128, 0.3);
+        }
+
+        .logo-diagonal .grupo {
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .logo-diagonal .diagonal {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-nps {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #266b6b, #4d9999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(51, 128, 128, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4d9999;
+            text-shadow: 0 0 10px rgba(77, 153, 153, 0.8);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #266b6b, #4d9999);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(51, 128, 128, 0.15) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #266b6b, #4d9999, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+            font-weight: 800;
+        }
+
+        .hero .subtitle {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #4d9999;
+            font-weight: 600;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(51, 128, 128, 0.5);
+            }
+            to {
+                text-shadow: 0 0 40px rgba(51, 128, 128, 0.8), 0 0 60px rgba(77, 153, 153, 0.6);
+            }
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* NPS Gauge */
+        .nps-gauge {
+            width: 200px;
+            height: 100px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .gauge-bg {
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                from 180deg,
+                #ff4444 0deg 72deg,
+                #ffaa00 72deg 108deg,
+                #ffdd00 108deg 144deg,
+                #4d9999 144deg 180deg,
+                #266b6b 180deg 216deg
+            );
+            border-radius: 100px 100px 0 0;
+            position: relative;
+        }
+
+        .gauge-bg::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 70px;
+            background: linear-gradient(135deg, #0d4d4d 0%, #1a5757 100%);
+            border-radius: 70px 70px 0 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .gauge-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 2px;
+            background: #ffffff;
+            transform-origin: 0 50%;
+            transform: translate(0, -50%) rotate(135deg);
+            z-index: 10;
+        }
+
+        .gauge-needle::after {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: -6px;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border-radius: 50%;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(45deg, #266b6b, #4d9999);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(51, 128, 128, 0.4);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* What are Guardians Section */
+        .what-section {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.2em;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #266b6b, #4d9999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .what-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .what-card {
+            background: rgba(13, 77, 77, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 35px;
+            border: 2px solid rgba(51, 128, 128, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .what-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(51, 128, 128, 0.1), rgba(77, 153, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .what-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(51, 128, 128, 0.3);
+            border-color: rgba(51, 128, 128, 0.8);
+        }
+
+        .what-card:hover::before {
+            opacity: 1;
+        }
+
+        .what-icon {
+            font-size: 4em;
+            margin-bottom: 25px;
+            display: block;
+            text-align: center;
+            color: #4d9999;
+        }
+
+        .what-card h3 {
+            color: #4d9999;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .what-card p {
+            line-height: 1.7;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        /* Guardians Team Section */
+        .guardians-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, rgba(51, 128, 128, 0.1) 0%, rgba(77, 153, 153, 0.1) 100%);
+            position: relative;
+        }
+
+        .guardians-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .guardian-card {
+            background: rgba(13, 77, 77, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(51, 128, 128, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .guardian-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(51, 128, 128, 0.05), rgba(77, 153, 153, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .guardian-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(51, 128, 128, 0.3);
+            border-color: rgba(51, 128, 128, 0.8);
+        }
+
+        .guardian-card:hover::before {
+            opacity: 1;
+        }
+
+        .guardian-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #266b6b, #4d9999);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5em;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guardian-name {
+            color: #4d9999;
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guardian-area {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pillars Section */
+        .pillars-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, rgba(51, 128, 128, 0.1) 0%, rgba(77, 153, 153, 0.1) 100%);
+            position: relative;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pillar-card {
+            background: rgba(13, 77, 77, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(51, 128, 128, 0.4);
+            border-radius: 25px;
+            padding: 40px;
+            transition: all 0.4s ease;
+        }
+
+        .pillar-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(51, 128, 128, 0.25);
+        }
+
+        .pillar-card h3 {
+            color: #4d9999;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .pillar-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pillar-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .pillar-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #4d9999;
+            font-weight: bold;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 100px 50px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit-category {
+            background: rgba(13, 77, 77, 0.5);
+            border-radius: 25px;
+            padding: 40px;
+            border: 2px solid rgba(51, 128, 128, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .benefit-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(51, 128, 128, 0.2);
+        }
+
+        .benefit-category h3 {
+            color: #4d9999;
+            font-size: 2em;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefit-list li {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4d9999;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(13, 77, 77, 0.95);
+            padding: 60px 50px 40px;
+            text-align: center;
+            border-top: 2px solid rgba(51, 128, 128, 0.3);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-motto {
+            font-size: 2em;
+            color: #4d9999;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .footer-diagonal {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(51, 128, 128, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.5em;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo-container {
+                gap: 10px;
+            }
+            
+            .logo-nps {
+                font-size: 18px;
+            }
+            
+            header {
+                padding: 15px 20px;
+            }
+            
+            .what-section, .guardians-section, .pillars-section, .benefits-section {
+                padding: 60px 20px;
+            }
+            
+            .what-grid, .guardians-grid, .pillars-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.5em;
+            }
+
+            .guardians-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .nps-gauge {
+                width: 150px;
+                height: 75px;
+            }
+
+            .gauge-needle {
+                width: 60px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(51, 128, 128, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(51, 128, 128, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(51, 128, 128, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <div class="logo-diagonal">
+                    <div class="grupo">GRUPO</div>
+                    <div class="diagonal">Diagonal</div>
+                </div>
+                <div class="logo-nps">📊 NPS EM AÇÃO</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#what">O que são</a></li>
+                <li><a href="#guardians">Nossos Guardiões</a></li>
+                <li><a href="#pillars">Pilares</a></li>
+                <li><a href="#benefits">Benefícios</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>NPS EM AÇÃO</h1>
+            <div class="subtitle">Transformando Feedback em Excelência</div>
+            
+            <!-- NPS Gauge -->
+            <div class="nps-gauge">
+                <div class="gauge-bg">
+                    <div class="gauge-needle"></div>
+                </div>
+            </div>
+            
+            <p>Os Guardiões do NPS são representantes estratégicos que lideram a jornada de melhoria contínua da experiência do cliente em cada área da empresa.</p>
+            <a href="#what" class="cta-button pulse">Conheça os Guardiões</a>
+        </div>
+    </section>
+
+    <!-- What are Guardians Section -->
+    <section class="what-section" id="what">
+        <h2 class="section-title fade-in">O que são os Guardiões do NPS?</h2>
+        <div class="what-grid">
+            <div class="what-card fade-in">
+                <span class="what-icon">🎯</span>
+                <h3>Representantes Estratégicos</h3>
+                <p>Lideram a jornada de melhoria contínua da experiência do cliente em cada área da empresa.</p>
+            </div>
+            <div class="what-card fade-in">
+                <span class="what-icon">🔄</span>
+                <h3>Transformadores de Feedback</h3>
+                <p>Convertem opiniões dos clientes em oportunidades de melhoria.</p>
+            </div>
+            <div class="what-card fade-in">
+                <span class="what-icon">🔗</span>
+                <h3>Conectores de Equipes</h3>
+                <p>Ligam as diferentes áreas da empresa à satisfação do cliente.</p>
+            </div>
+            <div class="what-card fade-in">
+                <span class="what-icon">⭐</span>
+                <h3>Promotores de Excelência</h3>
+                <p>Fomentam uma cultura organizacional voltada para a qualidade.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guardians Team Section -->
+    <section class="guardians-section" id="guardians">
+        <h2 class="section-title fade-in">Nossos Guardiões</h2>
+        <div class="guardians-grid">
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">J</div>
+                <div class="guardian-name">Jully</div>
+                <div class="guardian-area">Produtos</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">J</div>
+                <div class="guardian-name">Janayna</div>
+                <div class="guardian-area">Astec</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">A</div>
+                <div class="guardian-name">Alyne</div>
+                <div class="guardian-area">Repasse</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">N</div>
+                <div class="guardian-name">Nayara Moura</div>
+                <div class="guardian-area">Comercial Diagonal</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">L</div>
+                <div class="guardian-name">Luiz Henrique</div>
+                <div class="guardian-area">Comercial Victa</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">N</div>
+                <div class="guardian-name">Natália</div>
+                <div class="guardian-area">Relacionamento</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">B</div>
+                <div class="guardian-name">Beatriz</div>
+                <div class="guardian-area">Gente e Gestão</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">R</div>
+                <div class="guardian-name">Rayssa Brito</div>
+                <div class="guardian-area">Engenharia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section class="pillars-section" id="pillars">
+        <h2 class="section-title fade-in">Pilares de Atuação</h2>
+        <div class="pillars-grid">
+            <div class="pillar-card fade-in">
+                <h3>📊 Monitoramento</h3>
+                <ul class="pillar-list">
+                    <li>Acompanhamento contínuo dos indicadores de NPS</li>
+                    <li>Análise detalhada dos resultados</li>
+                </ul>
+            </div>
+            <div class="pillar-card fade-in">
+                <h3>⚡ Ação</h3>
+                <ul class="pillar-list">
+                    <li>Identificação de pontos de melhoria</li>
+                    <li>Proposição de soluções inovadoras</li>
+                </ul>
+            </div>
+            <div class="pillar-card fade-in">
+                <h3>💬 Comunicação</h3>
+                <ul class="pillar-list">
+                    <li>Disseminação de insights</li>
+                    <li>Engajamento das equipes</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section" id="benefits">
+        <h2 class="section-title fade-in">Benefícios</h2>
+        <div class="benefits-grid">
+            <div class="benefit-category fade-in">
+                <h3>🏢 Para a Empresa</h3>
+                <ul class="benefit-list">
+                    <li>Melhoria contínua da experiência</li>
+                    <li>Cultura orientada ao cliente</li>
+                    <li>Melhoras nos índices de promotores</li>
+                </ul>
+            </div>
+            <div class="benefit-category fade-in">
+                <h3>👥 Para os Colaboradores</h3>
+                <ul class="benefit-list">
+                    <li>Desenvolvimento profissional</li>
+                    <li>Protagonismo</li>
+                    <li>Reconhecimento</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-motto">Juntos, transformamos feedback em excelência!</div>
+            <p>&copy; 2025 Guardiões do NPS - Grupo Diagonal</p>
+            <div class="footer-diagonal">
+                <em>"Criando hoje o amanhã"</em>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 40; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.2s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Animate NPS Gauge Needle
+        function animateNPSGauge() {
+            const needle = document.querySelector('.gauge-needle');
+            if (needle
