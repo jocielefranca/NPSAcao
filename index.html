@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardiões do NPS - Transformando Feedback em Excelência | Grupo Diagonal</title>
+    <title>Guardiões do NPS - Transformando Feedback em Excelência</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0d4d4d 0%, #1a5757 30%, #266b6b 70%, #338080 100%);
+            background: linear-gradient(135deg, #0d4d4d 0%, #1a7a7a 30%, #26b3b3 70%, #00cccc 100%);
             color: white;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -34,7 +34,7 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background: rgba(51, 128, 128, 0.6);
+            background: rgba(0, 255, 204, 0.6);
             border-radius: 50%;
             animation: float 25s infinite linear;
         }
@@ -61,12 +61,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 15px 50px;
+            padding: 20px 50px;
             background: rgba(13, 77, 77, 0.95);
             backdrop-filter: blur(15px);
             z-index: 1000;
             transition: all 0.3s ease;
-            border-bottom: 2px solid rgba(51, 128, 128, 0.3);
+            border-bottom: 2px solid rgba(0, 204, 204, 0.3);
         }
 
         nav {
@@ -81,35 +81,18 @@
             gap: 20px;
         }
 
-        .logo-diagonal {
-            background: #0d4d4d;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-family: Arial, sans-serif;
-            border: 1px solid rgba(51, 128, 128, 0.3);
-        }
-
-        .logo-diagonal .grupo {
-            font-size: 12px;
-            color: #ffffff;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .logo-diagonal .diagonal {
-            font-size: 20px;
-            color: #ffffff;
+        .logo {
+            font-size: 28px;
             font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        .logo-nps {
-            font-size: 24px;
-            font-weight: bold;
-            background: linear-gradient(45deg, #266b6b, #4d9999);
+            background: linear-gradient(45deg, #00ffcc, #26b3b3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(51, 128, 128, 0.5);
+            text-shadow: 0 0 30px rgba(0, 204, 204, 0.5);
+        }
+
+        .diagonal-logo {
+            height: 40px;
+            filter: brightness(0) saturate(100%) invert(74%) sepia(35%) saturate(474%) hue-rotate(140deg) brightness(91%) contrast(87%);
         }
 
         .nav-links {
@@ -127,8 +110,8 @@
         }
 
         .nav-links a:hover {
-            color: #4d9999;
-            text-shadow: 0 0 10px rgba(77, 153, 153, 0.8);
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.8);
         }
 
         .nav-links a::after {
@@ -138,7 +121,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(45deg, #266b6b, #4d9999);
+            background: linear-gradient(45deg, #00ffcc, #26b3b3);
             transition: width 0.3s ease;
         }
 
@@ -153,7 +136,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background: radial-gradient(circle at center, rgba(51, 128, 128, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(0, 255, 204, 0.15) 0%, transparent 70%);
         }
 
         .hero-content {
@@ -166,7 +149,7 @@
         .hero h1 {
             font-size: 4.5em;
             margin-bottom: 15px;
-            background: linear-gradient(45deg, #266b6b, #4d9999, #ffffff);
+            background: linear-gradient(45deg, #00ffcc, #26b3b3, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 3s ease-in-out infinite alternate;
@@ -176,16 +159,28 @@
         .hero .subtitle {
             font-size: 2em;
             margin-bottom: 30px;
-            color: #4d9999;
+            color: #00ffcc;
             font-weight: 600;
+        }
+
+        .nps-gauge {
+            width: 200px;
+            height: 120px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .nps-gauge svg {
+            width: 100%;
+            height: 100%;
         }
 
         @keyframes glow {
             from {
-                text-shadow: 0 0 20px rgba(51, 128, 128, 0.5);
+                text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
             }
             to {
-                text-shadow: 0 0 40px rgba(51, 128, 128, 0.8), 0 0 60px rgba(77, 153, 153, 0.6);
+                text-shadow: 0 0 40px rgba(0, 255, 204, 0.8), 0 0 60px rgba(38, 179, 179, 0.6);
             }
         }
 
@@ -196,71 +191,13 @@
             line-height: 1.6;
         }
 
-        /* NPS Gauge */
-        .nps-gauge {
-            width: 200px;
-            height: 100px;
-            margin: 30px auto;
-            position: relative;
-        }
-
-        .gauge-bg {
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(
-                from 180deg,
-                #ff4444 0deg 72deg,
-                #ffaa00 72deg 108deg,
-                #ffdd00 108deg 144deg,
-                #4d9999 144deg 180deg,
-                #266b6b 180deg 216deg
-            );
-            border-radius: 100px 100px 0 0;
-            position: relative;
-        }
-
-        .gauge-bg::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 140px;
-            height: 70px;
-            background: linear-gradient(135deg, #0d4d4d 0%, #1a5757 100%);
-            border-radius: 70px 70px 0 0;
-            transform: translate(-50%, -50%);
-        }
-
-        .gauge-needle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 80px;
-            height: 2px;
-            background: #ffffff;
-            transform-origin: 0 50%;
-            transform: translate(0, -50%) rotate(135deg);
-            z-index: 10;
-        }
-
-        .gauge-needle::after {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: -6px;
-            width: 12px;
-            height: 12px;
-            background: #ffffff;
-            border-radius: 50%;
-        }
-
         .cta-button {
             display: inline-block;
             padding: 18px 45px;
-            background: linear-gradient(45deg, #266b6b, #4d9999);
+            background: linear-gradient(45deg, #00ffcc, #26b3b3);
             border: none;
             border-radius: 50px;
-            color: white;
+            color: #0d4d4d;
             font-size: 1.3em;
             font-weight: bold;
             text-decoration: none;
@@ -273,7 +210,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(51, 128, 128, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 255, 204, 0.4);
         }
 
         .cta-button::before {
@@ -302,7 +239,7 @@
             text-align: center;
             font-size: 3.2em;
             margin-bottom: 60px;
-            background: linear-gradient(45deg, #266b6b, #4d9999);
+            background: linear-gradient(45deg, #00ffcc, #26b3b3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 700;
@@ -321,7 +258,7 @@
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 35px;
-            border: 2px solid rgba(51, 128, 128, 0.3);
+            border: 2px solid rgba(0, 204, 204, 0.3);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -334,15 +271,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(51, 128, 128, 0.1), rgba(77, 153, 153, 0.1));
+            background: linear-gradient(45deg, rgba(0, 255, 204, 0.1), rgba(38, 179, 179, 0.1));
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
         .what-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(51, 128, 128, 0.3);
-            border-color: rgba(51, 128, 128, 0.8);
+            box-shadow: 0 25px 50px rgba(0, 255, 204, 0.3);
+            border-color: rgba(0, 255, 204, 0.8);
         }
 
         .what-card:hover::before {
@@ -354,11 +291,11 @@
             margin-bottom: 25px;
             display: block;
             text-align: center;
-            color: #4d9999;
+            color: #00ffcc;
         }
 
         .what-card h3 {
-            color: #4d9999;
+            color: #00ffcc;
             font-size: 1.8em;
             margin-bottom: 20px;
             text-align: center;
@@ -373,92 +310,10 @@
             text-align: center;
         }
 
-        /* Guardians Team Section */
-        .guardians-section {
-            padding: 100px 50px;
-            background: linear-gradient(135deg, rgba(51, 128, 128, 0.1) 0%, rgba(77, 153, 153, 0.1) 100%);
-            position: relative;
-        }
-
-        .guardians-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .guardian-card {
-            background: rgba(13, 77, 77, 0.6);
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(51, 128, 128, 0.4);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.4s ease;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .guardian-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(51, 128, 128, 0.05), rgba(77, 153, 153, 0.05));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .guardian-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(51, 128, 128, 0.3);
-            border-color: rgba(51, 128, 128, 0.8);
-        }
-
-        .guardian-card:hover::before {
-            opacity: 1;
-        }
-
-        .guardian-avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #266b6b, #4d9999);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2.5em;
-            color: white;
-            font-weight: bold;
-            position: relative;
-            z-index: 1;
-        }
-
-        .guardian-name {
-            color: #4d9999;
-            font-size: 1.5em;
-            margin-bottom: 8px;
-            font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .guardian-area {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1em;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-        }
-
         /* Pillars Section */
         .pillars-section {
             padding: 100px 50px;
-            background: linear-gradient(135deg, rgba(51, 128, 128, 0.1) 0%, rgba(77, 153, 153, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1) 0%, rgba(38, 179, 179, 0.1) 100%);
             position: relative;
         }
 
@@ -473,7 +328,7 @@
         .pillar-card {
             background: rgba(13, 77, 77, 0.6);
             backdrop-filter: blur(20px);
-            border: 2px solid rgba(51, 128, 128, 0.4);
+            border: 2px solid rgba(0, 204, 204, 0.4);
             border-radius: 25px;
             padding: 40px;
             transition: all 0.4s ease;
@@ -481,11 +336,11 @@
 
         .pillar-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(51, 128, 128, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 255, 204, 0.25);
         }
 
         .pillar-card h3 {
-            color: #4d9999;
+            color: #00ffcc;
             font-size: 2.2em;
             margin-bottom: 25px;
             text-align: center;
@@ -509,64 +364,111 @@
             content: '▶';
             position: absolute;
             left: 0;
-            color: #4d9999;
+            color: #00ffcc;
             font-weight: bold;
         }
 
-        /* Benefits Section */
-        .benefits-section {
+        /* Guardians Team Section */
+        .guardians-section {
             padding: 100px 50px;
+            background: linear-gradient(135deg, rgba(0, 255, 204, 0.1) 0%, rgba(38, 179, 179, 0.1) 100%);
+            position: relative;
         }
 
-        .benefits-grid {
+        .guardians-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 60px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        .benefit-category {
-            background: rgba(13, 77, 77, 0.5);
-            border-radius: 25px;
-            padding: 40px;
-            border: 2px solid rgba(51, 128, 128, 0.3);
+        .guardian-card {
+            background: rgba(13, 77, 77, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 204, 204, 0.4);
+            border-radius: 20px;
+            padding: 30px;
             transition: all 0.4s ease;
-        }
-
-        .benefit-category:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(51, 128, 128, 0.2);
-        }
-
-        .benefit-category h3 {
-            color: #4d9999;
-            font-size: 2em;
-            margin-bottom: 25px;
             text-align: center;
-            font-weight: 600;
-        }
-
-        .benefit-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .benefit-list li {
-            margin-bottom: 15px;
-            padding-left: 35px;
             position: relative;
-            font-size: 1.2em;
-            line-height: 1.6;
+            overflow: hidden;
         }
 
-        .benefit-list li::before {
-            content: '✓';
+        .guardian-card::before {
+            content: '';
             position: absolute;
+            top: 0;
             left: 0;
-            color: #4d9999;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 255, 204, 0.05), rgba(38, 179, 179, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .guardian-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 255, 204, 0.3);
+            border-color: rgba(0, 255, 204, 0.8);
+        }
+
+        .guardian-card:hover::before {
+            opacity: 1;
+        }
+
+        .guardian-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #00ffcc, #26b3b3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5em;
+            color: #0d4d4d;
             font-weight: bold;
-            font-size: 1.3em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .guardian-name {
+            color: #00ffcc;
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .guardian-star {
+            color: #FFD700;
+            font-size: 1.2em;
+            animation: sparkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        .guardian-area {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         /* Footer */
@@ -574,7 +476,7 @@
             background: rgba(13, 77, 77, 0.95);
             padding: 60px 50px 40px;
             text-align: center;
-            border-top: 2px solid rgba(51, 128, 128, 0.3);
+            border-top: 2px solid rgba(0, 204, 204, 0.3);
         }
 
         .footer-content {
@@ -584,15 +486,9 @@
 
         .footer-motto {
             font-size: 2em;
-            color: #4d9999;
+            color: #00ffcc;
             margin-bottom: 30px;
             font-weight: 600;
-        }
-
-        .footer-diagonal {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(51, 128, 128, 0.3);
         }
 
         /* Responsive */
@@ -609,23 +505,15 @@
                 display: none;
             }
             
-            .logo-container {
-                gap: 10px;
-            }
-            
-            .logo-nps {
-                font-size: 18px;
-            }
-            
             header {
                 padding: 15px 20px;
             }
             
-            .what-section, .guardians-section, .pillars-section, .benefits-section {
+            .what-section, .guardians-section, .pillars-section {
                 padding: 60px 20px;
             }
             
-            .what-grid, .guardians-grid, .pillars-grid, .benefits-grid {
+            .what-grid, .guardians-grid, .pillars-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -638,13 +526,12 @@
                 gap: 20px;
             }
 
-            .nps-gauge {
-                width: 150px;
-                height: 75px;
+            .logo-container {
+                gap: 10px;
             }
 
-            .gauge-needle {
-                width: 60px;
+            .diagonal-logo {
+                height: 30px;
             }
         }
 
@@ -668,13 +555,13 @@
 
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(51, 128, 128, 0.7);
+                box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.7);
             }
             70% {
-                box-shadow: 0 0 0 20px rgba(51, 128, 128, 0);
+                box-shadow: 0 0 0 20px rgba(0, 255, 204, 0);
             }
             100% {
-                box-shadow: 0 0 0 0 rgba(51, 128, 128, 0);
+                box-shadow: 0 0 0 0 rgba(0, 255, 204, 0);
             }
         }
     </style>
@@ -687,18 +574,17 @@
     <header>
         <nav>
             <div class="logo-container">
-                <div class="logo-diagonal">
-                    <div class="grupo">GRUPO</div>
-                    <div class="diagonal">Diagonal</div>
-                </div>
-                <div class="logo-nps">📊 NPS EM AÇÃO</div>
+                <svg class="diagonal-logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                    <text x="10" y="25" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="currentColor">GRUPO</text>
+                    <text x="10" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="currentColor">Diagonal</text>
+                </svg>
+                <div class="logo">📊 NPS EM AÇÃO</div>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#what">O que são</a></li>
-                <li><a href="#guardians">Nossos Guardiões</a></li>
                 <li><a href="#pillars">Pilares</a></li>
-                <li><a href="#benefits">Benefícios</a></li>
+                <li><a href="#guardians">Nossos Guardiões</a></li>
             </ul>
         </nav>
     </header>
@@ -711,9 +597,48 @@
             
             <!-- NPS Gauge -->
             <div class="nps-gauge">
-                <div class="gauge-bg">
-                    <div class="gauge-needle"></div>
-                </div>
+                <svg viewBox="0 0 200 120">
+                    <!-- Background arc -->
+                    <path d="M 20 100 A 80 80 0 0 1 180 100" 
+                          fill="none" 
+                          stroke="rgba(255,255,255,0.2)" 
+                          stroke-width="8"/>
+                    
+                    <!-- Red zone -->
+                    <path d="M 20 100 A 80 80 0 0 1 66.7 35.2" 
+                          fill="none" 
+                          stroke="#ff4444" 
+                          stroke-width="8"/>
+                    
+                    <!-- Yellow zone -->
+                    <path d="M 66.7 35.2 A 80 80 0 0 1 133.3 35.2" 
+                          fill="none" 
+                          stroke="#ffcc00" 
+                          stroke-width="8"/>
+                    
+                    <!-- Green zone -->
+                    <path d="M 133.3 35.2 A 80 80 0 0 1 180 100" 
+                          fill="none" 
+                          stroke="#00ff88" 
+                          stroke-width="8"/>
+                    
+                    <!-- Needle -->
+                    <line x1="100" y1="100" x2="145" y2="55" 
+                          stroke="white" 
+                          stroke-width="3" 
+                          stroke-linecap="round">
+                        <animateTransform attributeName="transform"
+                                        attributeType="XML"
+                                        type="rotate"
+                                        from="0 100 100"
+                                        to="45 100 100"
+                                        dur="2s"
+                                        repeatCount="1"/>
+                    </line>
+                    
+                    <!-- Center circle -->
+                    <circle cx="100" cy="100" r="6" fill="white"/>
+                </svg>
             </div>
             
             <p>Os Guardiões do NPS são representantes estratégicos que lideram a jornada de melhoria contínua da experiência do cliente em cada área da empresa.</p>
@@ -748,53 +673,6 @@
         </div>
     </section>
 
-    <!-- Guardians Team Section -->
-    <section class="guardians-section" id="guardians">
-        <h2 class="section-title fade-in">Nossos Guardiões</h2>
-        <div class="guardians-grid">
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">J</div>
-                <div class="guardian-name">Jully</div>
-                <div class="guardian-area">Produtos</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">J</div>
-                <div class="guardian-name">Janayna</div>
-                <div class="guardian-area">Astec</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">A</div>
-                <div class="guardian-name">Alyne</div>
-                <div class="guardian-area">Repasse</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">N</div>
-                <div class="guardian-name">Nayara Moura</div>
-                <div class="guardian-area">Comercial Diagonal</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">L</div>
-                <div class="guardian-name">Luiz Henrique</div>
-                <div class="guardian-area">Comercial Victa</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">N</div>
-                <div class="guardian-name">Natália</div>
-                <div class="guardian-area">Relacionamento</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">B</div>
-                <div class="guardian-name">Beatriz</div>
-                <div class="guardian-area">Gente e Gestão</div>
-            </div>
-            <div class="guardian-card fade-in">
-                <div class="guardian-avatar">R</div>
-                <div class="guardian-name">Rayssa Brito</div>
-                <div class="guardian-area">Engenharia</div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pillars Section -->
     <section class="pillars-section" id="pillars">
         <h2 class="section-title fade-in">Pilares de Atuação</h2>
@@ -823,25 +701,81 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits-section" id="benefits">
-        <h2 class="section-title fade-in">Benefícios</h2>
-        <div class="benefits-grid">
-            <div class="benefit-category fade-in">
-                <h3>🏢 Para a Empresa</h3>
-                <ul class="benefit-list">
-                    <li>Melhoria contínua da experiência</li>
-                    <li>Cultura orientada ao cliente</li>
-                    <li>Melhoras nos índices de promotores</li>
-                </ul>
+    <!-- Guardians Team Section -->
+    <section class="guardians-section" id="guardians">
+        <h2 class="section-title fade-in">Nossos Guardiões</h2>
+        <div class="guardians-grid">
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">J</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Jully
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Produtos</div>
             </div>
-            <div class="benefit-category fade-in">
-                <h3>👥 Para os Colaboradores</h3>
-                <ul class="benefit-list">
-                    <li>Desenvolvimento profissional</li>
-                    <li>Protagonismo</li>
-                    <li>Reconhecimento</li>
-                </ul>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">J</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Janayna
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Astec</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">A</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Alyne
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Repasse</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">N</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Nayara Moura
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Comercial Diagonal</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">L</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Luiz Henrique
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Comercial Victa</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">N</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Natália
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Relacionamento</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">B</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Beatriz
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Gente e Gestão</div>
+            </div>
+            <div class="guardian-card fade-in">
+                <div class="guardian-avatar">R</div>
+                <div class="guardian-name">
+                    <span class="guardian-star">⭐</span>
+                    Rayssa Brito
+                    <span class="guardian-star">⭐</span>
+                </div>
+                <div class="guardian-area">Engenharia</div>
             </div>
         </div>
     </section>
@@ -850,10 +784,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-motto">Juntos, transformamos feedback em excelência!</div>
-            <p>&copy; 2025 Guardiões do NPS - Grupo Diagonal</p>
-            <div class="footer-diagonal">
-                <em>"Criando hoje o amanhã"</em>
-            </div>
+            <p>&copy; 2025 Guardiões do NPS. Construindo uma cultura de excelência.</p>
         </div>
     </footer>
 
@@ -886,7 +817,50 @@
             });
         }, observerOptions);
 
-        // Animate NPS Gauge Needle
-        function animateNPSGauge() {
-            const needle = document.querySelector('.gauge-needle');
-            if (needle
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(13, 77, 77, 0.98)';
+            } else {
+                header.style.background = 'rgba(13, 77, 77, 0.95)';
+            }
+        });
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Add interactive hover effects to cards
+        document.querySelectorAll('.what-card, .guardian-card, .pillar-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.style.transform + ' scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace(' scale(1.02)', '');
+            });
+        });
+    </script>
+</body>
+</html>
